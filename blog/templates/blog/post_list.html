@@ -1,27 +1,15 @@
-<!DOCTYPE html>
-        <html lang="pl">
-            <head>
-                <meta charset="UTF-8">
-                <title>Blog Dla RPGowców</title>
-            </head>
-<body>
-    <div>
-        <h1>Witam na stronie bloga</h1>
-        <h2>Blog o RPGach</h2>
-        <h3>Autor: Vandraw</h3>
-        <h4>Wszelkie prawa zastrzeżone</h4>
+ {% extends 'blog/base.html' %}
+
+{% block content %}
+        {% for post in posts%}
+
+    <div class="post">
+        <div class="data">
+            <p>opublikowany: {{ post.publish_date}}</p>
+        </div>
+        <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title}}</a></h2>
+        <em>{{ post.text|linebreaksbr }}</em>
     </div>
 
-    <div>
-        <p>To jest akapit</p>
-    </div>
-
-    <div>
-        <ul>
-            <li>  Elementy listy</li>
-            <li>  Elementy listy</li>
-            <li>  Elementy listy</li>
-        </ul>
-    </div>
-</body>
-</html>
+        {% endfor %}
+    {% endblock %}
